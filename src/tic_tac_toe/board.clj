@@ -41,7 +41,7 @@
 
 (defn- get-winning-positions
   [board]
-    (concat (get-rows board) (get-columns board) (get-diagonals board)))
+  (concat (get-rows board) (get-columns board) (get-diagonals board)))
 
 (defn- is-full?
   [board]
@@ -82,4 +82,3 @@
    (update-board location mark empty-board))
   ([location mark board]
    (assoc board location mark)))
-

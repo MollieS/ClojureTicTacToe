@@ -3,10 +3,8 @@
             [tic-tac-toe.reader :refer :all]))
 
 (describe "Reader"
+          (with-stubs)
 
-          (it "should take user input and return valid location"
-              (should= 0 (with-in-str "1\n" (get-location))))
-
-          (it "should return nil for invalid input"
-              (should= nil (with-in-str "invalid\n (get-location")))
+          (it "reads user input"
+              (should= "1" (with-in-str "1\n" (get-location))))
           )

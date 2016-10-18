@@ -15,14 +15,8 @@
           (it "knows if there is not winning combination in a row"
               (should= false (is-won? ["X" "O" "X" nil nil nil nil nil nil] "X" "O")))
 
-          (it "knows if there is not winning combination in a row"
-              (should= false (is-won? ["X" "O" "X" nil nil nil nil nil nil] "O" "X")))
-
           (it "knows if there is a winning combination in the second row"
               (should= true (is-won? [nil nil nil "X" "X" "X" nil nil nil] "X" "O")))
-
-          (it "knows if there is a winning combination in the third row"
-              (should= true (is-won? [nil nil nil nil nil nil "X" "X" "X"] "X" "O")))
 
           (it "knows if there is a winning combination in the third row"
               (should= true (is-won? [nil nil nil nil nil nil "X" "X" "X"] "X" "O")))

@@ -22,10 +22,17 @@
 (defn clear-screen
   [] (println "\033[2J\033[;H"))
 
+(defn invalid-location
+  [input] (println (str input " is not a valid location")))
+
+(defn- format-row
+  [row] 
+  (apply str (map #(str "|" (get-mark %) "|") row)))
+
 (defn show-board
   [board]
   (let [[row-one row-two row-three] (partition 3 board)]
-    (println (apply str (map #(str "|" (get-mark %) "|") row-one)  ))
-    (println (apply str (map #(str "|" (get-mark %) "|") row-two)  ))
-    (println (apply str (map #(str "|" (get-mark %) "|") row-three)  ))))
+    (println (format-row row-one))
+    (println (format-row row-two))
+    (println (format-row row-three))))
 

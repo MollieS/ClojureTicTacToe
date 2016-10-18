@@ -28,7 +28,10 @@
               (should= "X" (get-mark "X")))
 
           (it "prints the winner"
-              (should= "X wins!\n" (with-out-str (show-winner "X")))))
+              (should= "X wins!\n" (with-out-str (show-winner "X"))))
 
           (it "clears the screen"
-              (should= "\033[2J\033[;H\n" (with-out-str (clear-screen)))) 
+              (should= "\033[2J\033[;H\n" (with-out-str (clear-screen))))) 
+
+          (it "prints an invalid location message"
+              (should= "hello is not a valid location" (with-out-str (invalid-location "hello"))))  
