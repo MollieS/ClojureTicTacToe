@@ -51,9 +51,28 @@
         diagonals (get-diagonals board)]
     (concat rows columns diagonals)))
 
+(defn- is-full?
+  [board]
+  (reduce #(and %1 %2) (map #(not (nil? %)) board))
+  )
+
+(defn is-won-by?
+  [board mark]
+  (is-a-win? (get-winning-positions board) mark))
+
 (defn is-won?
   [board mark-one mark-two]
   (or (is-a-win? (get-winning-positions board) mark-one) (is-a-win? (get-winning-positions board) mark-two)))
+
+(defn is-drawn?
+  [board mark-one mark-two]
+  (and (is-full? board)
+       (not (is-won? board mark-one mark-two))))
+
+(defn is-over?
+  [board mark-one mark-two] 
+  (or (is-won? board mark-one mark-two)
+      (is-drawn? board mark-one mark-two)))
 
 (defn update-board
   ([location mark]
