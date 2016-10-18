@@ -42,8 +42,11 @@
           (it "knows if there is a winning combination in the right diagonal"
               (should= true (is-won? [nil nil "X" nil "X" nil "X" nil nil] "X" "O")))
 
-          (it "knows the winner"
-              (should= true (is-won-by? [nil nil "X" nil "X" nil "X" nil nil] "X")))
+          (it "knows the winner when it is X"
+              (should= "X" (get-winner [nil nil "X" nil "X" nil "X" nil nil] "X" "O")))
+
+          (it "knows the winner when it is O"
+              (should= "O" (get-winner ["O" "O" "O" nil "X" "X" "X" nil nil] "X" "O")))
 
           (it "knows if it is a draw"
               (should= true (is-drawn? ["X" "O" "X" "O" "O" "X" "X" "X" "O"] "X" "O")))

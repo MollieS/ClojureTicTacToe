@@ -39,22 +39,18 @@
   [board]
   [(get-left-diagonal board) (get-right-diagonal board)])
 
+(defn- get-winning-positions
+  [board]
+    (concat (get-rows board) (get-columns board) (get-diagonals board)))
+
+(defn- is-full?
+  [board]
+  (reduce #(and %1 %2) (map #(not (nil? %)) board)))
+
 (defn- is-a-win?
   [cell-collection mark]
   (let [winning-positions (map #(check-set % mark) cell-collection)]
     (reduce #(or %1 %2) winning-positions)))
-
-(defn- get-winning-positions
-  [board]
-  (let [rows (get-rows board)
-        columns (get-columns board)
-        diagonals (get-diagonals board)]
-    (concat rows columns diagonals)))
-
-(defn- is-full?
-  [board]
-  (reduce #(and %1 %2) (map #(not (nil? %)) board))
-  )
 
 (defn is-won-by?
   [board mark]
@@ -73,6 +69,13 @@
   [board mark-one mark-two] 
   (or (is-won? board mark-one mark-two)
       (is-drawn? board mark-one mark-two)))
+
+(defn get-winner
+  [board mark-one mark-two]
+  (cond 
+    (is-won-by? board mark-one) mark-one
+    (is-won-by? board mark-two) mark-two
+    :else nil))
 
 (defn update-board
   ([location mark]

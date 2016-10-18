@@ -26,4 +26,9 @@
 
           (it "returns the correct symbol for a marked cell"
               (should= "X" (get-mark "X")))
-          )
+
+          (it "prints the winner"
+              (should= "X wins!\n" (with-out-str (show-winner "X")))))
+
+          (it "clears the screen"
+              (should= "\033[2J\033[;H\n" (with-out-str (clear-screen)))) 
