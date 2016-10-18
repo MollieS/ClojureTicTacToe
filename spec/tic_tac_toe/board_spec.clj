@@ -37,5 +37,9 @@
               (should= true (is-won? [nil nil "X" nil nil "X" nil nil "X"] "X" "O")))
 
           (it "knows if there is a winning combination in the left diagonal"
-              (should= true (is-won? ["X" nil nil nil "X" nil nil nil "X"] "X" "O"))))
+              (should= true (is-won? ["X" nil nil nil "X" nil nil nil "X"] "X" "O")))
+
+          (it "knows if there is a winning combination in the right diagonal"
+              (should= true (is-won? [nil nil "X" nil "X" nil "X" nil nil] "X" "O")))
+          )
 

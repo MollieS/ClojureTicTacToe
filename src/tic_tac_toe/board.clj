@@ -3,12 +3,6 @@
 (def empty-board
   (apply vector (take 9 (repeat nil))))
 
-(defn update-board
-  ([location mark]
-   (update-board location mark empty-board))
-  ([location mark board]
-   (assoc board location mark)))
-
 (defn- check-set
   [cell-set mark]
   (every? #{mark} cell-set))
@@ -17,51 +11,53 @@
   [board]
   (partition 3 board))
 
-(defn get-columns
+(defn- get-columns
   [board]
   (apply map vector (partition 3 board)))
 
-(defn remove-indexes
+(defn- remove-indexes
   [indexed-board]
   (into [] (map last indexed-board)))
 
-(defn- get-left-diagonal
+(defn- get-indexed-diagonals
   [board]
   (let [indexed-board (map-indexed vector board)
-        even-indexes (filter (fn [[index element]] (even? index)) indexed-board)] 
-    (remove-indexes (filter (fn [[index element]] ( = 0 (rem index 4))) even-indexes))))
+        even-indexes (filter (fn [[index element]] (even? index)) indexed-board)]
+    even-indexes))
+
+(defn- get-left-diagonal
+  [board]
+  (let [diagonals (get-indexed-diagonals board)] 
+    (remove-indexes (filter (fn [[index element]] (= 0 (rem index 4))) diagonals))))
 
 (defn- get-right-diagonal
   [board]
-  ["1"])
+  (let [diagonals (get-indexed-diagonals board)]
+    (remove-indexes (filter (fn [[index element]] (and (> index 0) (< index 8))) diagonals))))
 
-(defn get-diagonals
+(defn- get-diagonals
   [board]
-  [(get-left-diagonal board)  [nil nil nil]]
-  )
+  [(get-left-diagonal board) (get-right-diagonal board)])
 
-(defn- is-a-row-win?
-  [board mark]
+(defn- is-a-win?
+  [cell-collection mark]
+  (let [winning-positions (map #(check-set % mark) cell-collection)]
+    (reduce #(or %1 %2) winning-positions)))
+
+(defn- get-winning-positions
+  [board]
   (let [rows (get-rows board)
-        winning-positions (map #(check-set % mark) rows)]
-    (reduce #(or %1 %2) winning-positions)))
-
-(defn- is-a-column-win?
-  [board mark]
-  (let [columns (get-columns board)
-        winning-positions (map #(check-set % mark) columns)]
-    (reduce #(or %1 %2) winning-positions)))
-
-(defn- is-a-diagonal-win?
-  [board mark]
-  (let [diagonals (get-diagonals board)
-        winning-positions (map #(check-set % mark) diagonals)]
-    (reduce #(or %1 %2) winning-positions)))
+        columns (get-columns board)
+        diagonals (get-diagonals board)]
+    (concat rows columns diagonals)))
 
 (defn is-won?
   [board mark-one mark-two]
-  (or
-    (or (is-a-row-win? board mark-one) (is-a-row-win? board mark-two))
-    (or (is-a-column-win? board mark-one) (is-a-column-win? board mark-two))
-    (or (is-a-diagonal-win? board mark-one) (is-a-diagonal-win? board mark-two))))
+  (or (is-a-win? (get-winning-positions board) mark-one) (is-a-win? (get-winning-positions board) mark-two)))
+
+(defn update-board
+  ([location mark]
+   (update-board location mark empty-board))
+  ([location mark board]
+   (assoc board location mark)))
 
