@@ -1,5 +1,4 @@
 (ns tic-tac-toe.reader)
 
-(defn get-location
-  []
+(defn get-location []
   (read-line))
