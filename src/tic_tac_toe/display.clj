@@ -36,7 +36,12 @@
     (write (format-row row-three))))
 
 (defn ask-for-replay []
-  (write "Would you like to play again?"))
+  (write "Would you like to play again? (yes or no)"))
 
 (defn goodbye []
   (write "Goodbye!"))
+
+(defn menu []
+  (write "What game would you like to play?")
+  (write "1. Human v Human")
+  (write "2. Human v Unbeatable Player"))

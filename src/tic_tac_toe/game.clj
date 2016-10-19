@@ -15,7 +15,7 @@
 (defn- greet-player []
   (display/clear-screen)
   (display/greet)
-  (display/show-board board/empty-board))
+  (display/menu))
 
 (defn player-mark [player-one?]
   (if player-one?
@@ -27,12 +27,12 @@
 
 (defn get-replay-option []
   (display/ask-for-replay)
-  (let [user-choice (read-string (reader/get-location))]
+  (let [user-choice (read-string (reader/read-input))]
     user-choice))
 
 (defn get-player-location [marked-board]
   (display/prompt-player)
-  (let [location (reader/get-location)]
+  (let [location (reader/read-input)]
     (if (input-validator/invalid? location marked-board)
       (do
         (display/write (input-validator/validate location marked-board))
@@ -53,6 +53,7 @@
 
 (defn start []
   (greet-player)
+  (display/show-board board/empty-board)
   (start-play)
   (let [replay-choice (get-replay-option)]
     (if (= replay-choice "yes")

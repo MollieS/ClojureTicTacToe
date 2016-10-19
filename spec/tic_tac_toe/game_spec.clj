@@ -31,7 +31,7 @@
 
           (it "prompts player"
               (with-redefs [play-game (stub :play-game {:return "game is playing"})
-                            reader/get-location (stub :get-location {:return "1"})
+                            reader/read-input (stub :read-input {:return "1"})
                             display/clear-screen (stub :clear-screen {:return "screen cleared"})
                             get-replay-option (stub :replay-option {:return "no"})
                             display/prompt-player (stub :prompt-player) {:return "player prompt shown"}]
@@ -47,7 +47,7 @@
 
           (it "starts the game with an empty board and player one as true"
               (with-redefs [play-game (stub :play-game {:return "play has begun"})
-                            reader/get-location (stub :get-location {:return "1"})
+                            reader/read-input (stub :read-input {:return "1"})
                             display/clear-screen (stub :clear-screen {:return "screen cleared"})
                             get-replay-option (stub :replay-option {:return "no"}) ]
                 (start-play))
@@ -62,4 +62,13 @@
                             start-play (stub :start-play {:return "game over"})
                             display/clear-screen (stub :clear-screen {:return "screen cleared"}) ]
                 (start))
-                (should-have-invoked :get-replay-option)))
+                (should-have-invoked :get-replay-option))
+
+          (it "shows menu"
+              (with-redefs [get-replay-option (stub :get-replay-option {:return "no"})
+                            start-play (stub :start-play {:return "game over"})
+                            display/menu (stub :menu {:return "menu shown"})
+                            display/clear-screen (stub :clear-screen {:return "screen cleared"}) ]
+                (start))
+                (should-have-invoked :menu))
+          )

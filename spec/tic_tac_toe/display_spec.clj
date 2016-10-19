@@ -34,4 +34,14 @@
               (should= "\033[2J\033[;H\n" (with-out-str (clear-screen))))
 
           (it "prints an invalid location message"
-              (should= "hello is not a valid location\n" (with-out-str (invalid-location "hello")))))
+              (should= "hello is not a valid location\n" (with-out-str (invalid-location "hello"))))
+
+          (it "prompts for a play again option"
+              (should= "Would you like to play again? (yes or no)\n" (with-out-str (ask-for-replay))))
+
+          (it "prints goodbye"
+              (should= "Goodbye!\n" (with-out-str (goodbye))))
+
+          (it "offers a menu"
+              (should= "What game would you like to play?\n1. Human v Human\n2. Human v Unbeatable Player\n" (with-out-str (menu))))
+          )

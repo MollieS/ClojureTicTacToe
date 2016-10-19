@@ -4,7 +4,7 @@
   (every? #{mark} cell-set))
 
 (defn- is-full? [winning-positions]
-  (reduce #(and %1 %2) (map #(not (nil? %)) winning-positions)))
+  (reduce #(and %1 %2) (map #(not (nil? %)) (flatten winning-positions))))
 
 (defn- is-a-win? [cell-collection mark]
   (let [winning-positions (map #(check-set % mark) cell-collection)]
@@ -21,9 +21,9 @@
   (and (is-full? winning-positions)
        (not (is-won? winning-positions mark-one mark-two))))
 
-(defn is-over? [board mark-one mark-two]
-  (or (is-won? board mark-one mark-two)
-      (is-drawn? board mark-one mark-two)))
+(defn is-over? [winning-positions mark-one mark-two]
+  (or (is-won? winning-positions mark-one mark-two)
+      (is-drawn? winning-positions mark-one mark-two)))
 
 (defn get-winner [winning-positions mark-one mark-two]
   (cond
