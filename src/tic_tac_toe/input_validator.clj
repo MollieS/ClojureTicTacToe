@@ -25,8 +25,6 @@
   [input board]
   (if (not-a-number? input)
     true
-    (or 
+    (or
       (out-of-range? input board)
       (occupied? input board))))
-
-

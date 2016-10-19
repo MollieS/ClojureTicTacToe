@@ -1,38 +1,42 @@
 (ns tic-tac-toe.display)
 
-(defn cell-empty?
-  [cell]
-  (= cell nil))
+(defn write [message]
+  (println message))
 
-(defn get-mark
-  [cell]
+(defn cell-empty? [cell]
+  (nil? cell))
+
+(defn get-mark [cell]
   (if (cell-empty? cell)
     "-"
     cell))
 
-(defn greet
-  [] (println "Welcome to Tic Tac Toe\n"))
+(defn greet []
+  (write "Welcome to Tic Tac Toe\n"))
 
-(defn prompt-player
-  [] (println "Where would you like to make a move?\n"))
+(defn prompt-player []
+  (write "Where would you like to make a move?\n"))
 
-(defn show-winner
-  [winner] (println (str winner " wins!")))
+(defn show-winner [winner]
+  (write (str winner " wins!")))
 
-(defn clear-screen
-  [] (println "\033[2J\033[;H"))
+(defn clear-screen []
+  (write "\033[2J\033[;H"))
 
-(defn invalid-location
-  [input] (println (str input " is not a valid location")))
+(defn invalid-location [input]
+  (write (str input " is not a valid location")))
 
-(defn- format-row
-  [row] 
+(defn- format-row [row]
   (apply str (map #(str "|" (get-mark %) "|") row)))
 
-(defn show-board
-  [board]
+(defn show-board [board]
   (let [[row-one row-two row-three] (partition 3 board)]
-    (println (format-row row-one))
-    (println (format-row row-two))
-    (println (format-row row-three))))
+    (write (format-row row-one))
+    (write (format-row row-two))
+    (write (format-row row-three))))
 
+(defn ask-for-replay []
+  (write "Would you like to play again?"))
+
+(defn goodbye []
+  (write "Goodbye!"))

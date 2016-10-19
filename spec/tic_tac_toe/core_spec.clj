@@ -3,7 +3,7 @@
             [tic-tac-toe.core :refer :all]
             [tic-tac-toe.game :as game]))
 
-(describe "TicTacToe" 
+(describe "TicTacToe"
           (with-stubs)
 
           (it "starts the game"
@@ -11,4 +11,3 @@
                 [game/start (stub :start {:return "started"})]
               (-main))
               (should-have-invoked :start)))
-

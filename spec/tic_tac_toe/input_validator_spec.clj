@@ -5,17 +5,17 @@
 (def board ["X" nil nil])
 
 (describe "Input Validator"
-          
+
           (it "knows if input is not a number"
               (should= true (invalid? "hello" board)))
-          
+
           (it "knows if input is a number"
               (should= false (invalid? "2" board)))
 
-          (it "knows if input is out of range" 
+          (it "knows if input is out of range"
               (should= true (invalid? "20" board)))
 
-          (it "knows if input is in range" 
+          (it "knows if input is in range"
               (should= false (invalid? "2" board)))
 
           (it "knows if cell is occupied"

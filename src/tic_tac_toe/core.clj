@@ -2,7 +2,5 @@
   (:gen-class)
   (:require [tic-tac-toe.game :as game]))
 
-(defn -main 
-  [& args]
+(defn -main [& args]
   (game/start))
-
