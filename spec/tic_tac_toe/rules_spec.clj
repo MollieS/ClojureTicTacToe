@@ -26,4 +26,8 @@
               (should= true (is-over? [["X" "X" "X"]] "X" "O")))
 
           (it "knows if the game is over when drawn"
-              (should= true (is-over? [["X" "O" "X"]] "X" "O"))))
+              (should= true (is-over? [["X" "O" "X"]] "X" "O")))
+
+          (it "knows when the game is not over"
+              (should= false (is-over? [[nil nil nil]] "X" "O")))
+          )
