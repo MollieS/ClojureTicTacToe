@@ -5,7 +5,7 @@
     (not (number? location))))
 
 (defn out-of-range?  [input board]
-  (<= (count board) (read-string input)))
+  (< (count board) (read-string input)))
 
 (defn occupied?  [input board]
   (not (nil? (get board (dec (read-string input))))))

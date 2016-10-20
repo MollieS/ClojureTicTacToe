@@ -1,74 +1,51 @@
 (ns tic-tac-toe.game_spec
   (:require [speclj.core :refer :all]
-            [tic-tac-toe.display :as display]
-            [tic-tac-toe.reader :as reader]
+            [tic-tac-toe.rules :as rules]
+            [tic-tac-toe.board :as board]
+            [tic-tac-toe.unbeatable-player :as unbeatable-player]
+            [tic-tac-toe.human-player :as human-player]
             [tic-tac-toe.game :refer :all]))
+
+(def human-player-stubs [(fn [board mark] {:move "X" :player "human"})
+                         (fn [board mark] {:move "O" :player "human"})])
+
+(defn get-move-stub [board mark] "called human mark")
+(defn get-move2-stub [board mark] "called computer mark")
+
+(def human-computer [human-player/get-move unbeatable-player/get-move])
 
 (describe "Game"
           (with-stubs)
 
-          (it "knows the player's mark when X"
-              (should= "X" (player-mark true)))
+          (it "gets the first player's move in a human v human game"
+              (let [move (get-player-move human-player-stubs nil true)]
+                (should= "X" (:move move))
+                (should= "human" (:player move))))
 
-          (it "knows the player's mark when O"
-              (should= "O" (player-mark false)))
+          (it "gets the second player's move in a human v human game"
+              (let [move (get-player-move human-player-stubs nil false)]
+                (should= "O" (:move move))
+                (should= "human" (:player move))))
 
-          (it "greets the player"
-              (with-redefs [start-play (stub :start-play {:return "game is started"})
-                            display/clear-screen (stub :clear-screen {:return "screen cleared"})
-                            get-replay-option (stub :get-replay-option {:return "no"})
-                            display/greet (stub :greet) {:return "greeting"}]
-                (start))
-              (should-have-invoked :greet))
+          (it "checks if the game is over"
+              (with-redefs [rules/is-over? (stub :is-over?)
+                            board/get-winning-positions (stub :winning-positions {:return ["X" "X" "X"]})]
+                (is-game-over? ["X" "X" "X"]))
+              (should-have-invoked :is-over? {:with [["X" "X" "X"] "X" "O"]}))
+          
+          (it "gives the first player the corret arguments"
+              (with-redefs [board/update-board (stub :update/board {:return "board-updated"})
+                            get-move-stub (stub :get-move)
+                            get-move2-stub (stub :get-move2)]
+                (get-player-move [get-move-stub get-move2-stub] [nil nil nil] true)
+                (should-have-invoked :get-move {:with [[nil nil nil] ["X" "O"]]})))
 
-          (it "shows the board"
-              (with-redefs [start-play (stub :start-play {:return "game is started"})
-                            display/clear-screen (stub :clear-screen {:return "screen cleared"})
-                            get-replay-option (stub :get-replay-option {:return "no"})
-                            display/show-board (stub :show-board) {:return "board shown"}]
-                (start))
-              (should-have-invoked :show-board))
-
-          (it "prompts player"
-              (with-redefs [play-game (stub :play-game {:return "game is playing"})
-                            reader/read-input (stub :read-input {:return "1"})
-                            display/clear-screen (stub :clear-screen {:return "screen cleared"})
-                            get-replay-option (stub :replay-option {:return "no"})
-                            display/prompt-player (stub :prompt-player) {:return "player prompt shown"}]
-                (start))
-              (should-have-invoked :prompt-player))
-
-          (it "starts play"
-              (with-redefs [start-play (stub :start-play {:return "game is started"})
-                            display/clear-screen (stub :clear-screen {:return "screen cleared"})
-                            get-replay-option (stub :replay-option {:return "no"}) ]
-                (start))
-              (should-have-invoked :start-play))
-
-          (it "starts the game with an empty board and player one as true"
-              (with-redefs [play-game (stub :play-game {:return "play has begun"})
-                            reader/read-input (stub :read-input {:return "1"})
-                            display/clear-screen (stub :clear-screen {:return "screen cleared"})
-                            get-replay-option (stub :replay-option {:return "no"}) ]
-                (start-play))
-              (should-have-invoked :play-game {:with [0 [nil nil nil nil nil nil nil nil nil] true]}))
-
-          (it "shows the winner"
-              (with-redefs [display/clear-screen (stub "clear-screen" {:return "screen cleared"})])
-              (should-contain "X wins" (with-out-str (play-game 2 ["X" "X" nil nil nil nil nil "O" "O"] true))))
-
-          (it "asks for replay"
-              (with-redefs [get-replay-option (stub :get-replay-option {:return "no"})
-                            start-play (stub :start-play {:return "game over"})
-                            display/clear-screen (stub :clear-screen {:return "screen cleared"}) ]
-                (start))
-                (should-have-invoked :get-replay-option))
-
-          (it "shows menu"
-              (with-redefs [get-replay-option (stub :get-replay-option {:return "no"})
-                            start-play (stub :start-play {:return "game over"})
-                            display/menu (stub :menu {:return "menu shown"})
-                            display/clear-screen (stub :clear-screen {:return "screen cleared"}) ]
-                (start))
-                (should-have-invoked :menu))
+          (it "gives the second player the corret arguments"
+              (with-redefs [board/update-board (stub :update/board {:return "board-updated"})
+                            get-move-stub (stub :get-move)
+                            get-move2-stub (stub :get-move2)]
+                (get-player-move [get-move-stub get-move2-stub] [nil nil nil] false)
+                (should-have-invoked :get-move2 {:with [[nil nil nil] ["O" "X"]]})))
           )
+
+
