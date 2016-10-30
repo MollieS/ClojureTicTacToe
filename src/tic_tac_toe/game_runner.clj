@@ -17,7 +17,6 @@
     user-choice))
 
 (defn get-menu-choice []
-  (display/menu)
   (let [choice (read-string (reader/read-input))]
     (if (contains? game-types choice)
       (get game-types choice)
@@ -27,9 +26,12 @@
   (display/clear-screen)
   (display/greet))
 
-(defn- show-result [marked-board]
+(defn show-result [marked-board]
   (display/show-board marked-board)
-  (display/show-winner (game/get-winner marked-board)))
+  (let [winner (game/get-winner marked-board)]
+    (if (nil? winner)
+      (display/draw)
+      (display/show-winner winner))))
 
 (defn play-game [players board player-one?]
   (display/clear-screen)
@@ -46,7 +48,8 @@
   (let [marked-board (game/play-move true players (game/get-initial-board))]
     (play-game players marked-board false)))
 
-(defn- get-players []
+(defn get-players []
+  (display/menu)
   (game-types/get-game (get-menu-choice)))
 
 (defn replay? []

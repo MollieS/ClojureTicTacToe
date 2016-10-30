@@ -30,6 +30,9 @@
           (it "prints the winner"
               (should= "X wins!\n" (with-out-str (show-winner "X"))))
 
+          (it "prints a message if it is a draw"
+              (should= "It's a draw\n" (with-out-str (draw))))
+
           (it "clears the screen"
               (should= "\033[2J\033[;H\n" (with-out-str (clear-screen))))
 
@@ -43,5 +46,5 @@
               (should= "Goodbye!\n" (with-out-str (goodbye))))
 
           (it "offers a menu"
-              (should= "What game would you like to play?\n1. Human v Human\n2. Human v Unbeatable Player\n" (with-out-str (menu))))
+              (should= "What game would you like to play?\n1. Human v Human\n2. Human v Unbeatable Player\n3. Unbeatable Player v Human\n4. Unbeatable Player v Unbeatable Player\n" (with-out-str (menu))))
           )

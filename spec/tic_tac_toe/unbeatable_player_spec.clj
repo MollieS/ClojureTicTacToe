@@ -28,22 +28,17 @@
           (it "goes for the centre if corner is taken"
               (should= 4 (get-move ["X" nil nil nil nil nil nil nil nil] human-first)))
 
-          (it "goes for a win"
+          (it "goes for a win when possible"
               (should= 5 (get-move ["X" nil nil "O" "O" nil "X" nil "X"] human-first)))
 
-          (it "goes for a block"
+          (it "goes for a block on a nearly empty board"
               (should= 1 (get-move ["X" nil "X" nil "O" nil nil nil nil] human-first)))
 
-          (it "goes for a win over a block1"
+          (it "goes for a win over a block"
               (should= 7 (get-move ["X" "O" "X" "X" "O" nil nil nil nil] human-first)))
 
-          (it "goes for a win over a block2"
-              (should= 7 (get-move ["X" "O" "X" nil "O" nil "X" nil nil] human-first)))
-
-          (it "goes for a block"
+          (it "goes for a diagonal block"
               (should= 2 (get-move ["X" nil nil nil "O" nil "O" nil "X"] computer-first)))
 
           (it "goes for a block"
-              (should= 6 (get-move ["X" nil "O" nil "O" nil nil nil "X"] computer-first)))
-
-          )
+              (should= 6 (get-move ["X" nil "O" nil "O" nil nil nil "X"] computer-first))))

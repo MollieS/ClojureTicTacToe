@@ -25,5 +25,9 @@
 (defn get-initial-board []
   board/empty-board)
 
-(defn get-winner [current-board])
-
+(defn get-winner [current-board]
+  (let [winning-positions (board/get-winning-positions current-board )]
+  (cond
+    (rules/is-won-by? winning-positions marks/mark-one) marks/mark-one
+    (rules/is-won-by? winning-positions marks/mark-two) marks/mark-two
+    :else nil)))

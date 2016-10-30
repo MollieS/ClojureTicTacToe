@@ -46,6 +46,12 @@
                             get-move2-stub (stub :get-move2)]
                 (get-player-move [get-move-stub get-move2-stub] [nil nil nil] false)
                 (should-have-invoked :get-move2 {:with [[nil nil nil] ["O" "X"]]})))
+
+          (it "knows the winner"
+              (should= "X" (get-winner ["X" "X" "X" nil nil nil nil nil nil])))
+
+          (it "knows if there is no winner"
+              (should= nil (get-winner [nil nil nil nil nil nil nil nil nil])))
           )
 
 

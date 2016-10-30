@@ -6,7 +6,9 @@
 (def middle 4)
 
 (defn available-moves [board]
-  (map first (filter (fn [[index element]] (nil? element)) (map-indexed vector board))))
+  (map 
+    first (filter (fn [[index element]] (nil? element)) 
+                  (map-indexed vector board))))
 
 (defn- get-mark [marks]
   (first marks))
@@ -52,17 +54,17 @@
     1000))
 
 (defn negamax [board depth colour marks]
-    (if (rules/is-over? (board/get-winning-positions board) (first marks) (second marks))
-      [nil (score board depth marks)]
-      (do
-        (loop [[move & rest] (available-moves board)
-               best-move [nil (min-max-score colour)]]
-          (let [updated-board (board/update-board move (get-current-mark colour marks) board)
-                score (negamax updated-board (dec depth) (not colour) marks)]
-            (let [current-best-move (get-best-move colour best-move score move)]
-              (if (empty? rest)
-                current-best-move
-                (recur rest current-best-move))))))))
+  (if (rules/is-over? (board/get-winning-positions board) (first marks) (second marks))
+    [nil (score board depth marks)]
+    (do
+      (loop [[move & rest] (available-moves board)
+             best-move [nil (min-max-score colour)]]
+        (let [updated-board (board/update-board move (get-current-mark colour marks) board)
+              score (negamax updated-board (dec depth) (not colour) marks)]
+          (let [current-best-move (get-best-move colour best-move score move)]
+            (if (empty? rest)
+              current-best-move
+              (recur rest current-best-move))))))))
 
 (defn- is-empty? [board]
   (= 9 (count (available-moves board))))
@@ -74,6 +76,7 @@
   (= 8 (count (available-moves board))))
 
 (defn get-move [board marks]
+  (println "Computer is making a move...")
   (cond
     (is-empty? board) top-corner
     (and (second-move? board) (centre-free? board)) middle
