@@ -1,6 +1,7 @@
 (ns tic-tac-toe.game-runner
   (:require [tic-tac-toe.display :as display]
             [tic-tac-toe.game_types :as game-types]
+            [tic-tac-toe.input-validator :as input-validator]
             [tic-tac-toe.marks :as marks]
             [tic-tac-toe.game :as game]
             [tic-tac-toe.reader :as reader]))
@@ -16,13 +17,20 @@
   (let [user-choice (reader/read-input)]
     user-choice))
 
+(defn- input-is-invalid [input]
+  (cond 
+    (input-validator/empty-string? input) true
+    (input-validator/not-a-number? input) true
+    (not (contains? game-types (read-string input))) true
+    :else false))
+
 (defn get-menu-choice []
-  (let [choice (read-string (reader/read-input))]
-    (if (contains? game-types choice)
-      (get game-types choice)
-      (do 
+  (let [choice (reader/read-input)]
+    (if (input-is-invalid choice)
+      (do
         (display/invalid-choice)
-        (recur)))))
+        (recur))   
+      (get game-types (read-string choice)))))
 
 (defn- greet-player []
   (display/clear-screen)

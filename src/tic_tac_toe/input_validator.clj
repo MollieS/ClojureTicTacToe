@@ -1,8 +1,8 @@
 (ns tic-tac-toe.input-validator
   (:require [clojure.string :as str]))
 
-(defn- not-a-number? [input]
-  (let [letters (re-find #"[a-zA-z]" input)]
+(defn not-a-number? [input]
+  (let [letters (re-find #"[^0-9]" input)]
     (< 0 (count letters))))
 
 (defn- out-of-range? [input board]
@@ -14,13 +14,13 @@
 (defn- occupied? [input board]
   (not (nil? (get board (dec (read-string input))))))
 
-(defn- empty-string? [input]
+(defn empty-string? [input]
   (or (= "\n" input)
       (clojure.string/blank? input)))
 
 (defn validate [input board]
   (cond
-    (empty-string? input) "please choose a location"
+    (empty-string? input) "please choose a number"
     (not-a-number? input) (str input " is not a number")
     (out-of-range? input board) (str input " is out of range")
     (occupied? input board) (str "board is occupied at " input)))

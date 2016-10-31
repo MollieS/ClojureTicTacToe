@@ -47,7 +47,7 @@
 
           (it "gives correct message for occupied cell input"
               (should= "board is occupied at 1" (validate "1" board)))
-
-          (it "knows if input is out of range"
-              (should= "board is occupied at 1" (validate "1" board)))
+            
+          (it "gives a message for empty string"
+              (should= "please choose a number" (validate "" board)))
           )
