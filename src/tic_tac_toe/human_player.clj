@@ -11,15 +11,14 @@
   (let [new-location (reader/read-input)]
     (if (input-validator/invalid? new-location current-board)
       (recur new-location current-board)
-      (dec (read-string new-location))))) 
+      (dec (read-string new-location)))))
 
 (defn get-player-location [current-board marks]
   (display/prompt-player)
   (let [location (reader/read-input)]
     (if (input-validator/invalid? location current-board)
-      (get-valid-location location current-board) 
+      (get-valid-location location current-board)
       (dec (read-string location)))))
 
 (defn get-move [board marks]
   (get-player-location board marks))
-

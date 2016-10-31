@@ -1,13 +1,14 @@
 (ns tic-tac-toe.unbeatable-player
   (:require [tic-tac-toe.board :as board]
-            [tic-tac-toe.rules :as rules]))
+            [tic-tac-toe.rules :as rules]
+            [tic-tac-toe.delay :as delay-move]))
 
 (def top-corner 0)
 (def middle 4)
 
 (defn available-moves [board]
-  (map 
-    first (filter (fn [[index element]] (nil? element)) 
+  (map
+    first (filter (fn [[index element]] (nil? element))
                   (map-indexed vector board))))
 
 (defn- get-mark [marks]
@@ -23,8 +24,8 @@
 
 (defn- get-score [winning-positions mark opponent-mark depth]
   (cond
-    (rules/is-won-by? winning-positions opponent-mark) (* -10 depth) 
-    (rules/is-won-by? winning-positions mark) (* 10 depth) 
+    (rules/is-won-by? winning-positions opponent-mark) (* -10 depth)
+    (rules/is-won-by? winning-positions mark) (* 10 depth)
     :else 0))
 
 (defn- score [current-board depth marks]
@@ -53,13 +54,21 @@
     -1000
     1000))
 
+(defn- is-over? [board marks]
+  (rules/is-over? (board/get-winning-positions board)
+                  (get-mark marks)
+                  (get-opponent-mark marks)))
+
+(defn- play-move [move board colour marks]
+  (board/update-board move (get-current-mark colour marks) board))
+
 (defn negamax [board depth colour marks]
-  (if (rules/is-over? (board/get-winning-positions board) (first marks) (second marks))
+  (if (is-over? board marks)
     [nil (score board depth marks)]
     (do
       (loop [[move & rest] (available-moves board)
              best-move [nil (min-max-score colour)]]
-        (let [updated-board (board/update-board move (get-current-mark colour marks) board)
+        (let [updated-board (play-move move board colour marks)
               score (negamax updated-board (dec depth) (not colour) marks)]
           (let [current-best-move (get-best-move colour best-move score move)]
             (if (empty? rest)
@@ -77,6 +86,7 @@
 
 (defn get-move [board marks]
   (println "Computer is making a move...")
+  (delay-move/delay)
   (cond
     (is-empty? board) top-corner
     (and (second-move? board) (centre-free? board)) middle

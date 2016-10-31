@@ -2,8 +2,8 @@
   (:require [speclj.core :refer :all]
             [tic-tac-toe.marks :refer :all]))
 
-(describe "Marks" 
-          
+(describe "Marks"
+
           (it "knows player-one mark"
               (should= "X" mark-one))
 

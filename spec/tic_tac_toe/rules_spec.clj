@@ -29,7 +29,9 @@
               (should= true (is-over? [["X" "O" "X"]] "X" "O")))
 
           (it "knows if the game is not over when the board is empty"
-              (should= false (is-over? [[nil nil nil] [nil nil nil] [nil nil nil]] "X" "O")))
+              (should= false
+                       (is-over? [[nil nil nil] [nil nil nil] [nil nil nil]] "X" "O")))
 
           (it "knows if the game is not over when the board is not empty"
-              (should= false (is-over? [[nil nil nil] ["X" nil "O"] [nil nil nil]] "X" "O"))))
+              (should= false
+                       (is-over? [[nil nil nil] ["X" nil "O"] [nil nil nil]] "X" "O"))))

@@ -27,6 +27,7 @@
   (display/greet))
 
 (defn show-result [marked-board]
+  (display/clear-screen)
   (display/show-board marked-board)
   (let [winner (game/get-winner marked-board)]
     (if (nil? winner)
@@ -36,7 +37,6 @@
 (defn play-game [players board player-one?]
   (display/clear-screen)
   (display/show-board board)
-  (display/write (marks/get-mark-order player-one?))
   (let [marked-board (game/play-move player-one? players board)]
     (if (game/is-game-over? marked-board)
       (show-result marked-board)
@@ -57,7 +57,7 @@
 
 (defn start []
   (greet-player)
-  (start-game (get-players)) 
-  (if (replay?) 
+  (start-game (get-players))
+  (if (replay?)
     (start)
     (display/goodbye)))

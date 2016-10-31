@@ -12,7 +12,8 @@
 (defn get-move-stub [board mark] "called human mark")
 (defn get-move2-stub [board mark] "called computer mark")
 
-(def human-computer [human-player/get-move unbeatable-player/get-move])
+(def human-computer
+  [human-player/get-move unbeatable-player/get-move])
 
 (describe "Game"
           (with-stubs)
@@ -29,29 +30,33 @@
 
           (it "checks if the game is over"
               (with-redefs [rules/is-over? (stub :is-over?)
-                            board/get-winning-positions (stub :winning-positions {:return ["X" "X" "X"]})]
+                            board/get-winning-positions 
+                            (stub :winning-positions {:return ["X" "X" "X"]})]
                 (is-game-over? ["X" "X" "X"]))
-              (should-have-invoked :is-over? {:with [["X" "X" "X"] "X" "O"]}))
-          
+              (should-have-invoked :is-over?
+                                   {:with [["X" "X" "X"] "X" "O"]}))
+
           (it "gives the first player the corret arguments"
-              (with-redefs [board/update-board (stub :update/board {:return "board-updated"})
+              (with-redefs [board/update-board
+                            (stub :update/board {:return "board-updated"})
                             get-move-stub (stub :get-move)
                             get-move2-stub (stub :get-move2)]
-                (get-player-move [get-move-stub get-move2-stub] [nil nil nil] true)
-                (should-have-invoked :get-move {:with [[nil nil nil] ["X" "O"]]})))
+                (get-player-move 
+                  [get-move-stub get-move2-stub] [nil nil nil] true)
+                (should-have-invoked :get-move
+                                     {:with [[nil nil nil] ["X" "O"]]})))
 
           (it "gives the second player the corret arguments"
               (with-redefs [board/update-board (stub :update/board {:return "board-updated"})
                             get-move-stub (stub :get-move)
                             get-move2-stub (stub :get-move2)]
-                (get-player-move [get-move-stub get-move2-stub] [nil nil nil] false)
-                (should-have-invoked :get-move2 {:with [[nil nil nil] ["O" "X"]]})))
+                (get-player-move
+                  [get-move-stub get-move2-stub] [nil nil nil] false)
+                (should-have-invoked :get-move2
+                                     {:with [[nil nil nil] ["O" "X"]]})))
 
           (it "knows the winner"
               (should= "X" (get-winner ["X" "X" "X" nil nil nil nil nil nil])))
 
           (it "knows if there is no winner"
-              (should= nil (get-winner [nil nil nil nil nil nil nil nil nil])))
-          )
-
-
+              (should= nil (get-winner [nil nil nil nil nil nil nil nil nil]))))
