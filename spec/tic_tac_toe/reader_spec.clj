@@ -3,7 +3,6 @@
             [tic-tac-toe.reader :refer :all]))
 
 (describe "Reader"
-          (with-stubs)
 
           (it "reads user input"
-              (should= "1" (with-in-str "1\n" (get-location)))))
+              (should= "1" (with-in-str "1\n" (read-input)))))
