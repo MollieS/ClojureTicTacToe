@@ -20,7 +20,9 @@
   (let [choice (read-string (reader/read-input))]
     (if (contains? game-types choice)
       (get game-types choice)
-      (recur))))
+      (do 
+        (display/invalid-choice)
+        (recur)))))
 
 (defn- greet-player []
   (display/clear-screen)

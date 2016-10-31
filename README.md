@@ -6,8 +6,9 @@ Tic Tac Toe command line application built in Clojure
 
 ### Requirements
 
-* Clojure
-* Leiningen
+* Clojure 1.8.0
+* Leiningen 2.7.1
+* Java 8
 
 ### How to run
 
