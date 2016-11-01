@@ -1,4 +1,4 @@
-(ns tic-tac-toe.input_validator_spec
+(ns tic-tac-toe.cli.input_validator_spec
   (:require [speclj.core :refer :all]
             [tic-tac-toe.cli.input-validator :refer :all]))
 

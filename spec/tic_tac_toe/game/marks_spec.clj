@@ -1,4 +1,4 @@
-(ns tic-tac-toe.marks_spec
+(ns tic-tac-toe.game.marks_spec
   (:require [speclj.core :refer :all]
             [tic-tac-toe.game.marks :refer :all]))
 

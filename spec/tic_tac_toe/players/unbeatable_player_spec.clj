@@ -1,4 +1,4 @@
-(ns tic-tac-toe.unbeatable_player_spec
+(ns tic-tac-toe.players.unbeatable_player_spec
   (:require [speclj.core :refer :all]
             [tic-tac-toe.players.delay :as delay-move]
             [tic-tac-toe.players.unbeatable-player :refer :all]))

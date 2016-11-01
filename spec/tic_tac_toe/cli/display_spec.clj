@@ -1,4 +1,4 @@
-(ns tic-tac-toe.display-spec
+(ns tic-tac-toe.cli.display-spec
   (:require [speclj.core :refer :all]
             [tic-tac-toe.cli.display :refer :all]))
 

@@ -1,4 +1,4 @@
-(ns tic-tac-toe.game-runner_spec
+(ns tic-tac-toe.cli.game-runner_spec
   (:require [speclj.core :refer :all]
             [tic-tac-toe.cli.display :as display]
             [tic-tac-toe.game.game :as game]

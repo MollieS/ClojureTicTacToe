@@ -1,4 +1,4 @@
-(ns tic-tac-toe.game_types_spec
+(ns tic-tac-toe.cli.game_types_spec
   (:require [speclj.core :refer :all]
             [tic-tac-toe.cli.game-types :refer :all]))
 

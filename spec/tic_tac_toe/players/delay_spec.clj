@@ -1,4 +1,4 @@
-(ns tic-tac-toe.delay_spec
+(ns tic-tac-toe.players.delay_spec
   (:require [speclj.core :refer :all]
             [tic-tac-toe.players.delay :refer :all]))
 

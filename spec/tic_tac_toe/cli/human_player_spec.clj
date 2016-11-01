@@ -1,4 +1,4 @@
-(ns tic-tac-toe.human-player_spec
+(ns tic-tac-toe.cli.human-player_spec
   (:require [speclj.core :refer :all]
             [tic-tac-toe.cli.display :as display]
             [tic-tac-toe.cli.reader :as reader]

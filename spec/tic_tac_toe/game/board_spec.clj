@@ -1,4 +1,4 @@
-(ns tic-tac-toe.board_spec
+(ns tic-tac-toe.game.board_spec
   (:require [speclj.core :refer :all]
             [tic-tac-toe.game.board :refer :all]))
 
