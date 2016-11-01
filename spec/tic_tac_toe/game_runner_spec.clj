@@ -1,9 +1,9 @@
 (ns tic-tac-toe.game-runner_spec
   (:require [speclj.core :refer :all]
-            [tic-tac-toe.display :as display]
-            [tic-tac-toe.game :as game]
-            [tic-tac-toe.reader :as reader]
-            [tic-tac-toe.game-runner :refer :all]))
+            [tic-tac-toe.cli.display :as display]
+            [tic-tac-toe.game.game :as game]
+            [tic-tac-toe.cli.reader :as reader]
+            [tic-tac-toe.cli.game-runner :refer :all]))
 
 
 (describe "Game Runner"

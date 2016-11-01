@@ -1,6 +1,6 @@
-(ns tic-tac-toe.game_types
-  (:require [tic-tac-toe.human-player :as human-player]
-            [tic-tac-toe.unbeatable-player :as unbeatable-player]))
+(ns tic-tac-toe.cli.game-types
+  (:require [tic-tac-toe.cli.human-player :as human-player]
+            [tic-tac-toe.players.unbeatable-player :as unbeatable-player]))
 
 (defn get-game [game-type]
   (let [human-move human-player/get-move

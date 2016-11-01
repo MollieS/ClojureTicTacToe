@@ -1,6 +1,6 @@
 (ns tic-tac-toe.display-spec
   (:require [speclj.core :refer :all]
-            [tic-tac-toe.display :refer :all]))
+            [tic-tac-toe.cli.display :refer :all]))
 
 (describe "Display"
           (it "prints a welcome message"

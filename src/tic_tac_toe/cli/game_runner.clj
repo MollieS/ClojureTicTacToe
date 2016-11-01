@@ -1,10 +1,10 @@
-(ns tic-tac-toe.game-runner
-  (:require [tic-tac-toe.display :as display]
-            [tic-tac-toe.game_types :as game-types]
-            [tic-tac-toe.input-validator :as input-validator]
-            [tic-tac-toe.marks :as marks]
-            [tic-tac-toe.game :as game]
-            [tic-tac-toe.reader :as reader]))
+(ns tic-tac-toe.cli.game-runner
+  (:require [tic-tac-toe.cli.display :as display]
+            [tic-tac-toe.cli.game-types :as game-types]
+            [tic-tac-toe.cli.input-validator :as input-validator]
+            [tic-tac-toe.game.marks :as marks]
+            [tic-tac-toe.game.game :as game]
+            [tic-tac-toe.cli.reader :as reader]))
 
 (def game-types {
                  1 :human-v-human

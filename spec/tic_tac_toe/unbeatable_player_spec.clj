@@ -1,7 +1,7 @@
 (ns tic-tac-toe.unbeatable_player_spec
   (:require [speclj.core :refer :all]
-            [tic-tac-toe.delay :as delay-move]
-            [tic-tac-toe.unbeatable-player :refer :all]))
+            [tic-tac-toe.players.delay :as delay-move]
+            [tic-tac-toe.players.unbeatable-player :refer :all]))
 
 (def human-first ["O" "X"])
 (def computer-first ["X" "O"])

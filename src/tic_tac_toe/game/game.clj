@@ -1,7 +1,7 @@
-(ns tic-tac-toe.game
-  (:require [tic-tac-toe.rules :as rules]
-            [tic-tac-toe.board :as board]
-            [tic-tac-toe.marks :as marks]))
+(ns tic-tac-toe.game.game
+  (:require [tic-tac-toe.game.rules :as rules]
+            [tic-tac-toe.game.board :as board]
+            [tic-tac-toe.game.marks :as marks]))
 
 (defn- get-current-player [players player-one?]
   (if player-one?

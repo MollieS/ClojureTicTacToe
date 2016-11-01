@@ -1,4 +1,4 @@
-(ns tic-tac-toe.input-validator
+(ns tic-tac-toe.cli.input-validator
   (:require [clojure.string :as str]))
 
 (defn not-a-number? [input]
@@ -16,7 +16,7 @@
 
 (defn empty-string? [input]
   (or (= "\n" input)
-      (clojure.string/blank? input)))
+      (str/blank? input)))
 
 (defn validate [input board]
   (cond

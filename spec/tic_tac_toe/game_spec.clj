@@ -1,10 +1,10 @@
 (ns tic-tac-toe.game_spec
   (:require [speclj.core :refer :all]
-            [tic-tac-toe.rules :as rules]
-            [tic-tac-toe.board :as board]
-            [tic-tac-toe.unbeatable-player :as unbeatable-player]
-            [tic-tac-toe.human-player :as human-player]
-            [tic-tac-toe.game :refer :all]))
+            [tic-tac-toe.game.rules :as rules]
+            [tic-tac-toe.game.board :as board]
+            [tic-tac-toe.players.unbeatable-player :as unbeatable-player]
+            [tic-tac-toe.cli.human-player :as human-player]
+            [tic-tac-toe.game.game :refer :all]))
 
 (def human-player-stubs [(fn [board mark] {:move "X" :player "human"})
                          (fn [board mark] {:move "O" :player "human"})])

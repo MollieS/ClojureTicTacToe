@@ -1,4 +1,4 @@
-(ns tic-tac-toe.marks)
+(ns tic-tac-toe.game.marks)
 
 (def mark-one "X")
 (def mark-two "O")

@@ -1,6 +1,6 @@
 (ns tic-tac-toe.reader_spec
   (:require [speclj.core :refer :all]
-            [tic-tac-toe.reader :refer :all]))
+            [tic-tac-toe.cli.reader :refer :all]))
 
 (describe "Reader"
 

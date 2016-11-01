@@ -1,7 +1,7 @@
-(ns tic-tac-toe.human-player
-  (:require [tic-tac-toe.reader :as reader]
-            [tic-tac-toe.display :as display]
-            [tic-tac-toe.input-validator :as input-validator]))
+(ns tic-tac-toe.cli.human-player
+  (:require [tic-tac-toe.cli.reader :as reader]
+            [tic-tac-toe.cli.display :as display]
+            [tic-tac-toe.cli.input-validator :as input-validator]))
 
 (defn- get-valid-location [location current-board]
   (display/clear-screen)

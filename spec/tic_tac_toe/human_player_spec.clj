@@ -1,8 +1,8 @@
 (ns tic-tac-toe.human-player_spec
   (:require [speclj.core :refer :all]
-            [tic-tac-toe.display :as display]
-            [tic-tac-toe.reader :as reader]
-            [tic-tac-toe.human-player :refer :all]))
+            [tic-tac-toe.cli.display :as display]
+            [tic-tac-toe.cli.reader :as reader]
+            [tic-tac-toe.cli.human-player :refer :all]))
 
 (describe "Human Player"
           (with-stubs)

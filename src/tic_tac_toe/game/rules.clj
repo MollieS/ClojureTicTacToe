@@ -1,4 +1,4 @@
-(ns tic-tac-toe.rules)
+(ns tic-tac-toe.game.rules)
 
 (defn- check-set [cell-set mark]
   (every? #{mark} cell-set))

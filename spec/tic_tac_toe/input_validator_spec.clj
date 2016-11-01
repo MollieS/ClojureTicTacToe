@@ -1,6 +1,6 @@
 (ns tic-tac-toe.input_validator_spec
   (:require [speclj.core :refer :all]
-            [tic-tac-toe.input-validator :refer :all]))
+            [tic-tac-toe.cli.input-validator :refer :all]))
 
 (def board ["X" nil nil])
 
