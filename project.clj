@@ -7,4 +7,5 @@
   :profiles {:dev {:dependencies [[speclj "3.3.1"]]}}
   :plugins [[speclj "3.3.1"] [lein-kibit "0.1.2"]]
   :main tic-tac-toe.core
+  :aot [tic-tac-toe.core]
   :test-paths ["spec"])
