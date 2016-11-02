@@ -10,3 +10,9 @@
 
 (defn get-current-mark [player-one?]
   (first (get-mark-order player-one?)))
+
+(defn -getmark [player-one?]
+  (get-current-mark player-one?))
+
+(defn -getmark [player-one?]
+  (get-current-mark player-one?))
