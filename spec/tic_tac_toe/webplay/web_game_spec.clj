@@ -23,4 +23,8 @@
               (should= "XO-------" (play-move "X--------" 1))) 
 
           (it "should not place a mark on the board if game is over"
-              (should= "XXX------" (play-move "XXX------" 4)))) 
+              (should= "XXX------" (play-move "XXX------" 4)))
+          
+          (it "does not let a mark be overridden"
+              (should= "XOX------" (play-move "XOX------" 0)))
+          ) 

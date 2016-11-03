@@ -4,6 +4,7 @@
     :methods [#^{:static true} [getCurrentMark [String] String]
               #^{:static true} [playMove [String int] String]
               #^{:static true} [isOver [String] boolean]])
+
   (:require [clojure.string :as str]
             [tic-tac-toe.game.marks :as marks]
             [tic-tac-toe.game.board :as board]
@@ -26,9 +27,6 @@
     marks/mark-one
     marks/mark-two))
 
-(defn -getCurrentMark [board-state]
-  (get-current-player board-state))
-
 (defn format-element [element]
   (if (= "-" (str element))
     nil 
@@ -38,13 +36,19 @@
   (let [board (into [] (map #(format-element %) (seq board-state)))]
     (game/is-game-over? board)))
 
+(defn mark-board [board-state location]
+      (let [current-board (into [] (map #(str %) (seq board-state)))]
+            (if (= "-" (get current-board location))
+            (str/join (board/update-board location (get-current-player board-state) current-board))
+            board-state)))
+
 (defn play-move [board-state location]
   (if (is-over? board-state)
     board-state 
-    (do
-      (let [current-board (into [] (map #(str %) (seq board-state)))
-            marked-board (board/update-board location (get-current-player board-state) current-board)]
-        (str/join marked-board)))))
+    (mark-board board-state location)))
+
+(defn -getCurrentMark [board-state]
+  (get-current-player board-state))
 
 (defn -isOver [board]
   (is-over? board))
