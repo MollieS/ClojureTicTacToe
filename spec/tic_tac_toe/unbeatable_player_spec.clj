@@ -77,4 +77,10 @@
               (with-redefs [delay-move/delay (stub :delay)]
               (should= 6
                        (get-move ["X" nil "O" nil "O" nil nil nil "X"]
-                                 computer-first)))))
+                                 computer-first))))
+
+          (it "does not override a player move"
+              (with-redefs [delay-move/delay (stub :delay)]
+              (should= 0
+                       (get-move [nil nil nil nil "X" nil nil nil nil]
+                                 human-first)))))

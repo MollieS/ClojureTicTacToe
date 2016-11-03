@@ -79,7 +79,7 @@
   (= 9 (count (available-moves board))))
 
 (defn- centre-free? [board]
-  (nil? (get middle board)))
+  (nil? (get board middle)))
 
 (defn- second-move? [board]
   (= 8 (count (available-moves board))))

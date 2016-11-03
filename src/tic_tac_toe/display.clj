@@ -11,6 +11,9 @@
     "-"
     cell))
 
+(defn invalid-choice []
+  (write "not a valid choice\n"))
+
 (defn greet []
   (write "Welcome to Tic Tac Toe\n"))
 
