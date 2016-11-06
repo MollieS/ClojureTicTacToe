@@ -1,6 +1,6 @@
 (ns tic-tac-toe.cli.game-types
   (:require [tic-tac-toe.cli.human-player :as human-player]
-            [tic-tac-toe.players.unbeatable-player :as unbeatable-player]))
+            [tic-tac-toe.players.delay-player :as unbeatable-player]))
 
 (defn get-game [game-type]
   (let [human-move human-player/get-move

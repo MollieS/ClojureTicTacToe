@@ -17,14 +17,20 @@
               (should= true (is-over? "XXX------")))
 
           (it "should place a mark on a board"
-              (should= "X--------" (play-move "---------" 0)))
+              (should= "X--------" (play-move "---------" 0 "hvh")))
 
           (it "should place the correct mark on the board"
-              (should= "XO-------" (play-move "X--------" 1))) 
+              (should= "XO-------" (play-move "X--------" 1 "hvh"))) 
 
           (it "should not place a mark on the board if game is over"
-              (should= "XXX------" (play-move "XXX------" 4)))
+              (should= "XXX------" (play-move "XXX------" 4 "hvh")))
           
           (it "does not let a mark be overridden"
-              (should= "XOX------" (play-move "XOX------" 0)))
+              (should= "XOX------" (play-move "XOX------" 0 "hvh")))
+
+          (it "plays a computer move when the computer is the second player"
+              (should="O---X----" (play-move "---------" 4 "hvc")))
+
+          (it "plays a computer move when the computer is the first player"
+              (should="X--------" (play-move "---------" -1 "cvh")))
           ) 

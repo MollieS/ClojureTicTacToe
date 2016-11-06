@@ -85,8 +85,6 @@
   (= 8 (count (available-moves board))))
 
 (defn get-move [board marks]
-  (println "Computer is making a move...")
-  (delay-move/delay)
   (cond
     (is-empty? board) top-corner
     (and (second-move? board) (centre-free? board)) middle
