@@ -12,7 +12,7 @@
 (defn -main [& args]
   (game-runner/start))
 
-(defn -isOver? [board]
+(defn -isOver [board]
   (web-game/is-over? board))
 
 (defn -playMove [board location game-type]
