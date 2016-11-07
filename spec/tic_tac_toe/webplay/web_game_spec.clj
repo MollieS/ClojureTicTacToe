@@ -20,11 +20,11 @@
               (should= "X--------" (play-move "---------" 0 "hvh")))
 
           (it "should place the correct mark on the board"
-              (should= "XO-------" (play-move "X--------" 1 "hvh"))) 
+              (should= "XO-------" (play-move "X--------" 1 "hvh")))
 
           (it "should not place a mark on the board if game is over"
               (should= "XXX------" (play-move "XXX------" 4 "hvh")))
-          
+
           (it "does not let a mark be overridden"
               (should= "XOX------" (play-move "XOX------" 0 "hvh")))
 
@@ -35,7 +35,7 @@
               (should= "X--------" (play-move "---------" -1 "cvh")))
 
           (it "knows if it is a draw" 
-              (should= true (draw? "XOXOXOOXX"))) 
+              (should= true (draw? "XOXOXOOXX")))
 
           (it "knows the winning symbol" 
-              (should= "X" (winning-symbol "XXXOO----"))))   
+              (should= "X" (winning-symbol "XXXOO----"))))

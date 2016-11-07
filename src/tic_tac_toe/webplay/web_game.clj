@@ -28,7 +28,7 @@
 
 (defn format-element [element]
   (if (= "-" (str element))
-    nil 
+    nil
     (str element)))
 
 (defn format-board [board-state]
@@ -46,20 +46,20 @@
 
 (defn get-updated-board-state [board-state location]
   (if (is-over? board-state)
-    board-state 
+    board-state
     (mark-board board-state location)))
 
 (defn play-move [board-state location game-type]
   (let [marked-board (get-updated-board-state board-state location)]
     (if (= game-type "hvh")
       marked-board
-      (recur marked-board 
-             (computer-player/get-move (format-board marked-board) 
-                                       (marks/get-mark-order (player-one? marked-board))) 
+      (recur marked-board
+             (computer-player/get-move (format-board marked-board)
+                                       (marks/get-mark-order (player-one? marked-board)))
              "hvh"))))
 
 (defn draw? [board-state]
-  (rules/is-drawn? (format-board board-state) 
+  (rules/is-drawn? (format-board board-state)
                    marks/mark-one
                    marks/mark-two))
 

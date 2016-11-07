@@ -21,7 +21,7 @@
                        (get-move ["X" "O" "X" "O" "X" "O" "O" "X" nil]
                                  human-first)))
 
-           (it "goes for a win if possible"
+          (it "goes for a win if possible"
               (should= 2
                        (get-move ["O" "O" nil "O" "X" "X" "X" "X" nil]
                                  human-first)))

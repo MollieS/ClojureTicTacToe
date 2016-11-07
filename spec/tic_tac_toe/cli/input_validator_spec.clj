@@ -26,7 +26,7 @@
 
           (it "can deal with an empty string"
               (should= true (invalid? "         " board)))
-          
+
           (it "can deal with a mix of numbers and letters"
               (should= true (invalid? "5a" board)))
 
@@ -47,7 +47,6 @@
 
           (it "gives correct message for occupied cell input"
               (should= "board is occupied at 1" (validate "1" board)))
-            
+
           (it "gives a message for empty string"
-              (should= "please choose a number" (validate "" board)))
-          )
+              (should= "please choose a number" (validate "" board))))

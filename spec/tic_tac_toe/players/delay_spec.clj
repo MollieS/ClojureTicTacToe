@@ -4,7 +4,7 @@
 
 (describe "Delay"
           (with-stubs)
-          
+
           (it "should sleep"
               (with-redefs [sleep (stub :sleep)]
                 (get-move ["X" "X" "X"] ["X", "O"]))

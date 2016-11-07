@@ -18,7 +18,7 @@
     user-choice))
 
 (defn- input-is-invalid [input]
-  (cond 
+  (cond
     (input-validator/empty-string? input) true
     (input-validator/not-a-number? input) true
     (not (contains? game-types (read-string input))) true
@@ -29,7 +29,7 @@
     (if (input-is-invalid choice)
       (do
         (display/invalid-choice)
-        (recur))   
+        (recur))
       (get game-types (read-string choice)))))
 
 (defn- greet-player []
