@@ -29,8 +29,13 @@
               (should= "XOX------" (play-move "XOX------" 0 "hvh")))
 
           (it "plays a computer move when the computer is the second player"
-              (should="O---X----" (play-move "---------" 4 "hvc")))
+              (should= "O---X----" (play-move "---------" 4 "hvc")))
 
           (it "plays a computer move when the computer is the first player"
-              (should="X--------" (play-move "---------" -1 "cvh")))
-          ) 
+              (should= "X--------" (play-move "---------" -1 "cvh")))
+
+          (it "knows if it is a draw" 
+              (should= true (draw? "XOXOXOOXX"))) 
+
+          (it "knows the winning symbol" 
+              (should= "X" (winning-symbol "XXXOO----"))))   

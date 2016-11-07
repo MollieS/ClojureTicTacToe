@@ -1,13 +1,8 @@
 (ns tic-tac-toe.webplay.web-game
-  (:gen-class
-    :name ttt.webplay.web_game
-    :methods [#^{:static true} [getCurrentMark [String] String]
-              #^{:static true} [playMove [String int String] String]
-              #^{:static true} [isOver [String] boolean]])
-
   (:require [clojure.string :as str]
             [tic-tac-toe.game.marks :as marks]
             [tic-tac-toe.game.board :as board]
+            [tic-tac-toe.game.rules :as rules]
             [tic-tac-toe.players.unbeatable-player :as computer-player]
             [tic-tac-toe.game.game :as game]))
 
@@ -50,7 +45,7 @@
       board-state)))
 
 (defn get-updated-board-state [board-state location]
-  (if (or (is-over? board-state))
+  (if (is-over? board-state)
     board-state 
     (mark-board board-state location)))
 
@@ -63,11 +58,11 @@
                                        (marks/get-mark-order (player-one? marked-board))) 
              "hvh"))))
 
-(defn -isOver [board]
-  (is-over? board))
+(defn draw? [board-state]
+  (rules/is-drawn? (format-board board-state) 
+                   marks/mark-one
+                   marks/mark-two))
 
-(defn -playMove [board location game-type]
-  (play-move board location game-type))
-
-(defn -getCurrentMark [board-state]
-  (get-current-player board-state))
+(defn winning-symbol [board-state]
+  (let [winning-positions (board/get-winning-positions (format-board board-state))]
+    (rules/get-winner winning-positions marks/mark-one marks/mark-two)))
