@@ -1,10 +1,10 @@
-(ns tic-tac-toe.game-runner
-  (:require [tic-tac-toe.display :as display]
-            [tic-tac-toe.game_types :as game-types]
-            [tic-tac-toe.input-validator :as input-validator]
-            [tic-tac-toe.marks :as marks]
-            [tic-tac-toe.game :as game]
-            [tic-tac-toe.reader :as reader]))
+(ns tic-tac-toe.cli.game-runner
+  (:require [tic-tac-toe.cli.display :as display]
+            [tic-tac-toe.cli.game-types :as game-types]
+            [tic-tac-toe.cli.input-validator :as input-validator]
+            [tic-tac-toe.game.marks :as marks]
+            [tic-tac-toe.game.game :as game]
+            [tic-tac-toe.cli.reader :as reader]))
 
 (def game-types {
                  1 :human-v-human
@@ -18,7 +18,7 @@
     user-choice))
 
 (defn- input-is-invalid [input]
-  (cond 
+  (cond
     (input-validator/empty-string? input) true
     (input-validator/not-a-number? input) true
     (not (contains? game-types (read-string input))) true
@@ -29,7 +29,7 @@
     (if (input-is-invalid choice)
       (do
         (display/invalid-choice)
-        (recur))   
+        (recur))
       (get game-types (read-string choice)))))
 
 (defn- greet-player []

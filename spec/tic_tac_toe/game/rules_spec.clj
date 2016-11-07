@@ -1,6 +1,6 @@
-(ns tic-tac-toe.rules_spec
+(ns tic-tac-toe.game.rules_spec
   (:require [speclj.core :refer :all]
-            [tic-tac-toe.rules :refer :all]))
+            [tic-tac-toe.game.rules :refer :all]))
 
 (describe "Rules"
 

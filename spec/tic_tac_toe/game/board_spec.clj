@@ -1,6 +1,6 @@
-(ns tic-tac-toe.board_spec
+(ns tic-tac-toe.game.board_spec
   (:require [speclj.core :refer :all]
-            [tic-tac-toe.board :refer :all]))
+            [tic-tac-toe.game.board :refer :all]))
 
 (describe "Board"
           (it "updates an empty board at given position with given mark"

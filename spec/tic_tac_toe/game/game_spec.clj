@@ -1,10 +1,10 @@
-(ns tic-tac-toe.game_spec
+(ns tic-tac-toe.game.game_spec
   (:require [speclj.core :refer :all]
-            [tic-tac-toe.rules :as rules]
-            [tic-tac-toe.board :as board]
-            [tic-tac-toe.unbeatable-player :as unbeatable-player]
-            [tic-tac-toe.human-player :as human-player]
-            [tic-tac-toe.game :refer :all]))
+            [tic-tac-toe.game.rules :as rules]
+            [tic-tac-toe.game.board :as board]
+            [tic-tac-toe.players.unbeatable-player :as unbeatable-player]
+            [tic-tac-toe.cli.human-player :as human-player]
+            [tic-tac-toe.game.game :refer :all]))
 
 (def human-player-stubs [(fn [board mark] {:move "X" :player "human"})
                          (fn [board mark] {:move "O" :player "human"})])
@@ -30,7 +30,7 @@
 
           (it "checks if the game is over"
               (with-redefs [rules/is-over? (stub :is-over?)
-                            board/get-winning-positions 
+                            board/get-winning-positions
                             (stub :winning-positions {:return ["X" "X" "X"]})]
                 (is-game-over? ["X" "X" "X"]))
               (should-have-invoked :is-over?
@@ -41,7 +41,7 @@
                             (stub :update/board {:return "board-updated"})
                             get-move-stub (stub :get-move)
                             get-move2-stub (stub :get-move2)]
-                (get-player-move 
+                (get-player-move
                   [get-move-stub get-move2-stub] [nil nil nil] true)
                 (should-have-invoked :get-move
                                      {:with [[nil nil nil] ["X" "O"]]})))

@@ -1,7 +1,6 @@
-(ns tic-tac-toe.unbeatable-player
-  (:require [tic-tac-toe.board :as board]
-            [tic-tac-toe.rules :as rules]
-            [tic-tac-toe.delay :as delay-move]))
+(ns tic-tac-toe.players.unbeatable-player
+  (:require [tic-tac-toe.game.board :as board]
+            [tic-tac-toe.game.rules :as rules]))
 
 (def top-corner 0)
 (def middle 4)
@@ -85,8 +84,6 @@
   (= 8 (count (available-moves board))))
 
 (defn get-move [board marks]
-  (println "Computer is making a move...")
-  (delay-move/delay)
   (cond
     (is-empty? board) top-corner
     (and (second-move? board) (centre-free? board)) middle

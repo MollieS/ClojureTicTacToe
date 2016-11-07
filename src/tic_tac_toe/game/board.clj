@@ -1,4 +1,4 @@
-(ns tic-tac-toe.board)
+(ns tic-tac-toe.game.board)
 
 (def empty-board
   (apply vector (take 9 (repeat nil))))

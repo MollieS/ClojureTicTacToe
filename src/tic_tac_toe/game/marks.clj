@@ -1,4 +1,4 @@
-(ns tic-tac-toe.marks)
+(ns tic-tac-toe.game.marks)
 
 (def mark-one "X")
 (def mark-two "O")
@@ -10,3 +10,9 @@
 
 (defn get-current-mark [player-one?]
   (first (get-mark-order player-one?)))
+
+(defn -getmark [player-one?]
+  (get-current-mark player-one?))
+
+(defn -getmark [player-one?]
+  (get-current-mark player-one?))

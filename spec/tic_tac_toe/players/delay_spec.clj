@@ -1,11 +1,11 @@
-(ns tic-tac-toe.delay_spec
+(ns tic-tac-toe.players.delay_player_spec
   (:require [speclj.core :refer :all]
-            [tic-tac-toe.delay :refer :all]))
+            [tic-tac-toe.players.delay-player :refer :all]))
 
 (describe "Delay"
           (with-stubs)
-          
+
           (it "should sleep"
               (with-redefs [sleep (stub :sleep)]
-                (delay))
+                (get-move ["X" "X" "X"] ["X", "O"]))
               (should-have-invoked :sleep)))

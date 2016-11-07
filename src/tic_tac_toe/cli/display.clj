@@ -1,4 +1,4 @@
-(ns tic-tac-toe.display)
+(ns tic-tac-toe.cli.display)
 
 (defn write [message]
   (println message))
