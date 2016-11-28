@@ -1,7 +1,6 @@
 (ns tic-tac-toe.players.unbeatable-player
   (:require [tic-tac-toe.game.board :as board]
-            [tic-tac-toe.game.rules :as rules]
-            [tic-tac-toe.players.delay :as delay-move]))
+            [tic-tac-toe.game.rules :as rules]))
 
 (def top-corner 0)
 (def middle 4)

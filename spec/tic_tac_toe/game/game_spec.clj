@@ -30,7 +30,7 @@
 
           (it "checks if the game is over"
               (with-redefs [rules/is-over? (stub :is-over?)
-                            board/get-winning-positions 
+                            board/get-winning-positions
                             (stub :winning-positions {:return ["X" "X" "X"]})]
                 (is-game-over? ["X" "X" "X"]))
               (should-have-invoked :is-over?
@@ -41,7 +41,7 @@
                             (stub :update/board {:return "board-updated"})
                             get-move-stub (stub :get-move)
                             get-move2-stub (stub :get-move2)]
-                (get-player-move 
+                (get-player-move
                   [get-move-stub get-move2-stub] [nil nil nil] true)
                 (should-have-invoked :get-move
                                      {:with [[nil nil nil] ["X" "O"]]})))

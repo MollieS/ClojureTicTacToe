@@ -20,7 +20,7 @@
 
 (defn play-move [player-one? players current-board]
   (let [move (get-player-move players current-board player-one?)]
-    (board/update-board move 
+    (board/update-board move
                         (marks/get-current-mark player-one?)
                         current-board)))
 
@@ -29,7 +29,7 @@
 
 (defn get-winner [current-board]
   (let [winning-positions (board/get-winning-positions current-board )]
-  (cond
-    (rules/is-won-by? winning-positions marks/mark-one) marks/mark-one
-    (rules/is-won-by? winning-positions marks/mark-two) marks/mark-two
-    :else nil)))
+    (cond
+      (rules/is-won-by? winning-positions marks/mark-one) marks/mark-one
+      (rules/is-won-by? winning-positions marks/mark-two) marks/mark-two
+      :else nil)))
